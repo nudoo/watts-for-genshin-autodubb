@@ -29,9 +29,8 @@ def find_matches(spk_list: list, character: str) -> str:
     # 如果有匹配项，返回它们；
     # 否则返回一个随机说话人。但是对同一个speaker，应该返回固定的一个说话人
     if not matches:
-        try:
-            speaker = SPEAKER_MAPPING.get(character)
-        except:
+        speaker = SPEAKER_MAPPING.get(character)
+        if not speaker:
             speaker = random.choice(spk_list)
             SPEAKER_MAPPING[character] = speaker
     else:
