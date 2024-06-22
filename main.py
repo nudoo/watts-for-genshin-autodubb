@@ -1,6 +1,6 @@
-from watts import WaTTS
+import watts
 
-bot = WaTTS()
+bot = watts.init()
 
 
 if __name__ == '__main__':
