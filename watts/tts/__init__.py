@@ -3,7 +3,7 @@ import os
 from playsound import playsound
 from watts import config
 from watts.log import new_logger
-from bert_vits_api import BertVits2
+from .bert_vits_api import BertVits2
 from watts import utils
 
 logger = new_logger("tts")
@@ -42,9 +42,13 @@ def inference(is_run, tts_que, wav_que):
                 continue
 
         text = str(msg["text"]).replace("\n", "")
+        text = utils.sanitize_filename(text)
 
-        _text = utils.sanitize_filename(text)
-        name = utils.delete_last_punctuation(_text)
+        # 如果text为空，跳过
+        if not len(text):
+            continue
+
+        name = utils.delete_last_punctuation(text)
 
         audio_name = os.path.join(config.AUDIO_DIR, name)
         """"""

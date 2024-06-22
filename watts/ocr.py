@@ -10,12 +10,10 @@ import numpy as np
 from PIL import ImageGrab
 from PIL import Image
 from difflib import SequenceMatcher
-from watts.OperationAPI.CharacterOperation import CharacterOperation
 from watts.log import new_logger
 from watts import config
 
 
-player = CharacterOperation("主角")
 logger = new_logger("ocr")
 
 
@@ -186,7 +184,6 @@ def start(bot):
         if send_flag:
             # 该台词已经发送至tts合成
             # pyautogui.click()
-            player.MouseLeftClick()
             continue
         logger.info("屏幕截图文字未变化。准备合成语音")
         charactor, dialogue = deal_dial_result(dial_ocr_result)
@@ -205,7 +202,6 @@ def start(bot):
         if not opt_ocr_result:
             # 无识别结果
             # pyautogui.click()
-            player.MouseLeftClick()
             continue
 
         # 处理选项文字识别结果
@@ -213,11 +209,9 @@ def start(bot):
         opt_position = opt_result_dict.get("position")          # 点击位置
         my_text = opt_result_dict.get("text")                   # 选择的文本
         logger.info(f"玩家选项。opt_position={opt_position}, text={my_text}")
-        # 将鼠标平滑移动到选项位置，持续时间设置为0.5秒
+        # 将鼠标移动到选项位置，持续时间设置为0.5秒
         # pyautogui.moveTo(opt_position, duration=0.5)
         # pyautogui.click()
-        player.MoveMouseToPosition(opt_position[0], opt_position[1])
-        player.MouseLeftClick()
 
         msg = make_up_msg("旅行者", my_text)
 
