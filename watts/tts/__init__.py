@@ -1,3 +1,4 @@
+import random
 import time
 import os
 from playsound import playsound
@@ -5,6 +6,7 @@ from watts import config
 from watts.log import new_logger
 from .bert_vits_api import BertVits2
 from watts import utils
+from watts.config import SPEAKER_MAPPING
 
 logger = new_logger("tts")
 bert = BertVits2()
@@ -20,9 +22,29 @@ def generate_speech(text, audio_name, speaker):
     pass
 
 
+# 匹配说话人
+def find_matches(spk_list: list, character: str) -> str:
+    # 使用列表推导来找到所有包含搜索词的项
+    matches = [item for item in spk_list if character in item]
+    # 如果有匹配项，返回它们；
+    # 否则返回一个随机说话人。但是对同一个speaker，应该返回固定的一个说话人
+    if not matches:
+        try:
+            speaker = SPEAKER_MAPPING.get(character)
+        except:
+            speaker = random.choice(spk_list)
+            SPEAKER_MAPPING[character] = speaker
+    else:
+        speaker = matches[0]
+
+    return speaker
+
+
 def inference(is_run, tts_que, wav_que):
     logger.info(f'[inference] 运行inference子进程')
     i = 1
+    # 获取说话人列表
+    speak_list = bert.getSpeakers()
     while is_run:
         # 阻塞
         msg = {}
@@ -52,8 +74,8 @@ def inference(is_run, tts_que, wav_que):
 
         audio_name = os.path.join(config.AUDIO_DIR, name)
         """"""
-        # speaker = msg.get("character")
-        speaker = "花火【中】"
+        character = msg.get("character")
+        speaker = find_matches(speak_list, character)
         logger.info(f'[inference] name={name},speaker={speaker},text={text}')
         generate_speech(text, audio_name, speaker)
         wav_que.put(audio_name + "::" + text)

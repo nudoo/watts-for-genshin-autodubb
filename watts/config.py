@@ -5,6 +5,10 @@ max_wav_queue = 10
 # 音频文件夹
 AUDIO_DIR = r".\audio"
 
+# 匹配说话人。当一个角色没有语音模型，或者ocr识别错误，则为其随机选择一个模型。记录对应关系，固定音色
+# 可以提前为角色设置语音模型
+SPEAKER_MAPPING = {}
+
 
 # 屏幕分辨率
 width, height = 2560, 1440
