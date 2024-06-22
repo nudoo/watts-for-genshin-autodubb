@@ -103,7 +103,6 @@ def deal_dial_result(results: list[tuple]):
         height_list.append(height)
         text_list.append(res[1])
 
-    print("==============")
     print(text_list)
     length = len(height_list)
     print(f"heights={height_list}")
