@@ -43,3 +43,4 @@ def init():
     global _bot
     os.makedirs(config.AUDIO_DIR, exist_ok=True)
     _bot = WaTTS()
+    return _bot
