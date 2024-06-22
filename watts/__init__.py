@@ -1,4 +1,6 @@
 import multiprocessing
+import os
+
 from watts import config
 from watts import ocr
 from watts import tts
@@ -33,3 +35,11 @@ class WaTTS(object):
         p3 = multiprocessing.Process(target=self.playsound, args=())
         p3.start()
 
+
+_bot = None
+
+
+def init():
+    global _bot
+    os.makedirs(config.AUDIO_DIR, exist_ok=True)
+    _bot = WaTTS()
