@@ -19,7 +19,6 @@ def generate_speech(text, audio_name, speaker):
     """
     # bert.moreSettings(0.2, 0.6, 0.9, 1.0, 0.4, True, 0.2, 1.0, "我很开心！！！")
     bert.gengrateToVolce(audio_name, speaker, text)
-    pass
 
 
 # 匹配说话人
@@ -70,25 +69,24 @@ def inference(is_run, tts_que, wav_que):
             continue
 
         name = utils.delete_last_punctuation(text)
-
         audio_name = os.path.join(config.AUDIO_DIR, name)
-        """"""
+
         character = msg.get("character")
         speaker = find_matches(speak_list, character)
-        logger.info(f'[inference] name={name},speaker={speaker},text={text}')
+        logger.info(f'[inference] character={character},speaker={speaker},text={text}')
         generate_speech(text, audio_name, speaker)
         wav_que.put(audio_name + "::" + text)
 
 
 def play(is_run, wav_que):
-    logger.info("by moea:运行play子进程")
+    logger.info("运行play子进程")
     # pygame.init()
     while is_run:
         # 阻塞
         if wav_que.empty():
             time.sleep(2)
             continue
-        logger.info(f"[play], wav_queue深度：{wav_que.qsize()}")
+        logger.trace(f"[play], wav_queue深度：{wav_que.qsize()}")
         text = wav_que.get()
 
         audio_name = text.split("::")[0]

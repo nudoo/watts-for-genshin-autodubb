@@ -37,4 +37,12 @@
 
 本项目遵守GPL-3.0协议开源，请在协议允许的条件及范围内使用本项目。本项目的开发者不会强制向您索要任何费用，同时也不会提供任何质保，一切因本项目引起的法律、利益纠纷与本项目的开发者无关。
 
-最终解释权归HoshinoBot开发组所有。
+最终解释权归WaTTS开发组所有。
+
+## 致谢&友情链接
+
+**AI Hobbyist 交流社区**：https://www.ai-hobbyist.org/portal.php
+
+**在线推理接口**：https://www.bilibili.com/read/cv26659988/
+
+**日志库**：https://github.com/KOKOMI12345/NewSparkleLogging

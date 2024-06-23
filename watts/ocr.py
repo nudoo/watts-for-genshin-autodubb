@@ -157,7 +157,7 @@ def start(bot):
             # 该台词已经发送至tts合成
             # pyautogui.click()
             continue
-        logger.trace("识别到屏幕文字未变化。准备合成语音...")
+        logger.info("识别到屏幕文字未变化。准备合成语音...")
         charactor, dialogue = deal_dial_result(dial_ocr_result)
 
         msg = make_up_msg(charactor, dialogue)
@@ -174,9 +174,9 @@ def start(bot):
 
         # 处理选项文字识别结果
         opt_result_dict = deal_opt_result(opt_ocr_result)
-        opt_position = opt_result_dict.get("position")              # 点击位置
+        # opt_position = opt_result_dict.get("position")              # 点击位置
         player_text = opt_result_dict.get("text")                   # 选择的文本
-        logger.trace(f"玩家选项。opt_position={opt_position}, text={player_text}")
+        logger.trace(f"玩家选项：{player_text}")
         # 将鼠标移动到选项位置，持续时间设置为0.5秒
         # pyautogui.moveTo(opt_position, duration=0.5)
         # pyautogui.click()
