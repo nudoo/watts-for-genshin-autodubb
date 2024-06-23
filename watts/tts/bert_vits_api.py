@@ -1,8 +1,9 @@
 import requests, sys
 from NsparkleLog import LogManager
+from watts import config
 
 
-access_token = r"6cb54f0ef2fe3fa1df97d2ecdd8652d5"
+access_token = config.access_token
 
 
 class BertVits2:

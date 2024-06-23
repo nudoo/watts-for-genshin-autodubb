@@ -4,17 +4,15 @@
 import time
 import random
 import easyocr
+import numpy as np
 from easyocr import Reader
 from typing import List, Tuple
-import numpy as np
-from PIL import ImageGrab
-from PIL import Image
+from PIL import Image, ImageGrab
 from difflib import SequenceMatcher
-from watts.log import new_logger
-from watts import config
+from watts import log, config
 
 
-logger = new_logger("ocr")
+logger = log.new_logger("ocr")
 
 
 # 比较两个字符串的相似度
