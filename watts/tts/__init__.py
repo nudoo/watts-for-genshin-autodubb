@@ -14,7 +14,7 @@ bert = BertVits2()
 def generate_speech(text, audio_name, speaker):
     """使用在线接口合成语音
     接口地址：https://infer.acgnai.top
-    作者：红血球AE3803 https://www.bilibili.com/read/cv26659988/?from=articleDetail&spm_id_from=333.976.0.0
+    作者：红血球AE3803 https://www.bilibili.com/read/cv26659988/
     """
     # bert.moreSettings(0.2, 0.6, 0.9, 1.0, 0.4, True, 0.2, 1.0, "我很开心！！！")
     bert.gengrateToVolce(audio_name, speaker, text)
@@ -22,9 +22,9 @@ def generate_speech(text, audio_name, speaker):
 
 # 匹配说话人
 def find_matches(spk_list: list, character: str) -> str:
-    # 使用列表推导来找到所有包含搜索词的项
+    # 找到所有包含搜索词的项
     matches = [item for item in spk_list if character in item]
-    # 如果有匹配项，返回它们；
+    # 如果有匹配项，则返回；
     # 否则返回一个随机说话人。但是对同一个speaker，应该返回固定的一个说话人
     if not matches:
         speaker = SPEAKER_MAPPING.get(character)
@@ -40,8 +40,8 @@ def find_matches(spk_list: list, character: str) -> str:
 def inference(is_run, tts_que, wav_que):
     logger.info(f'[inference] 运行inference子进程')
     i = 1
-    # 获取说话人列表
-    speak_list = bert.getSpeakers()
+    # 获取说话人列表。目前只有星穹铁道的
+    speak_list = bert.getSpeakers("sr")
     while is_run:
         # 阻塞
         msg = {}
@@ -78,7 +78,7 @@ def inference(is_run, tts_que, wav_que):
 
 
 def play(is_run, wav_que):
-    logger.info("运行play子进程")
+    logger.info("[play], 运行play子进程")
     # pygame.init()
     while is_run:
         # 阻塞
@@ -91,7 +91,7 @@ def play(is_run, wav_que):
         audio_name = text.split("::")[0]
         txt = text.split("::")[1]
 
-        logger.info(f"开始播放内容::{audio_name}::{txt}")
+        logger.info(f"[play], 开始播放内容::{audio_name}::{txt}")
         play_audio(audio_name)
 
 
