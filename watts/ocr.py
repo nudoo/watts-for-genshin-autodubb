@@ -115,10 +115,10 @@ def deal_opt_result(results: List[Tuple]) -> dict:
 
 def get_box_position(box: Tuple) -> Tuple:
     # 从单个文字识别结果中，提取box的坐标信息（左上，右下）
-    p_x1 = box[0][0]
-    p_y1 = box[0][1]
-    p_x2 = box[2][0]
-    p_y2 = box[2][1]
+    p_x1 = int(box[0][0])
+    p_y1 = int(box[0][1])
+    p_x2 = int(box[2][0])
+    p_y2 = int(box[2][1])
     return p_x1, p_y1, p_x2, p_y2
 
 
@@ -158,6 +158,7 @@ def start(bot):
             # pyautogui.click()
             continue
         logger.info("识别到屏幕文字未变化。准备合成语音...")
+        logger.trace(f"文字识别：dial_ocr_result={dial_ocr_result}, text={text}")
         charactor, dialogue = deal_dial_result(dial_ocr_result)
 
         msg = make_up_msg(charactor, dialogue)

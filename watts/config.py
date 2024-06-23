@@ -6,7 +6,7 @@ max_wav_length = 10
 AUDIO_DIR = r".\audio"
 
 # 在线推理接口访问令牌
-access_token = ""
+access_token = r""
 
 """匹配说话人。
 当一个角色没有语音模型（本来就没有或者ocr识别错误），则为其随机选择一个模型。
@@ -34,16 +34,16 @@ def calculate_coordinates(screen_width=2560, screen_height=1440):
     """
     # Define coordinates for the diagnostic box
     x1 = 0
-    y1 = round(screen_height * 0.77)
-    x2 = round(screen_width * 0.85)
-    y2 = round(screen_height * 0.925)
+    y1 = int(screen_height * 0.77)
+    x2 = int(screen_width * 0.85)
+    y2 = int(screen_height * 0.925)
     diagnostic_box = (x1, y1, x2, y2)
 
     # Calculate once to avoid repeated computation
-    width_65_percent = round(screen_width * 0.65)
-    height_50_percent = round(screen_height * 0.5)
+    width_65_percent = int(screen_width * 0.65)
+    height_50_percent = int(screen_height * 0.5)
     width_full = screen_width
-    height_77_percent = round(screen_height * 0.77)
+    height_77_percent = int(screen_height * 0.77)
 
     # Define coordinates for the optional box
     optional_box = (width_65_percent, height_50_percent, width_full, height_77_percent)
