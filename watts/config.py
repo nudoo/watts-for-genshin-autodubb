@@ -1,6 +1,6 @@
 # 队列深度
-max_text_length = 10
-max_wav_queue = 10
+max_tts_length = 10
+max_wav_length = 10
 
 # 音频文件夹
 AUDIO_DIR = r".\audio"

@@ -1,15 +1,13 @@
 import multiprocessing
 import os
 
-from watts import config
-from watts import ocr
-from watts import tts
+from watts import config, ocr, tts
 
 
 class WaTTS(object):
     def __init__(self):
-        self.tts_queue = multiprocessing.Queue(maxsize=int(config.max_wav_queue))
-        self.wav_queue = multiprocessing.Queue(maxsize=int(config.max_text_length))
+        self.tts_queue = multiprocessing.Queue(maxsize=int(config.max_tts_length))
+        self.wav_queue = multiprocessing.Queue(maxsize=int(config.max_wav_length))
         self.is_run = True
 
     def inference(self):

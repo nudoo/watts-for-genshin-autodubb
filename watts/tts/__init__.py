@@ -2,10 +2,9 @@ import random
 import time
 import os
 from playsound import playsound
-from watts import config
-from watts.log import new_logger
 from .bert_vits_api import BertVits2
-from watts import utils
+from watts import config, utils
+from watts.log import new_logger
 from watts.config import SPEAKER_MAPPING
 
 logger = new_logger("tts")
