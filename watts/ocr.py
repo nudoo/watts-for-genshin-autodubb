@@ -1,7 +1,6 @@
 """
 识别屏幕上的文字
 """
-import asyncio
 import time
 import random
 import easyocr
@@ -46,6 +45,7 @@ def make_up_msg(charactor: str, dialogue: str, emotion: str = "default", text_la
                 batch_size: int = 1, speed: float = 1.0, stream: str = "False", save_temp: str = "False") -> dict:
     """
     :rtype: dict
+    兼容本地tts（GSVI）接口格式
     """
     return dict(character=charactor,
                 text=dialogue,
